@@ -3,7 +3,7 @@ const NodeWebcam = require("node-webcam");
 const express = require('express');
 const app = express();
 const path = require('path');
-const cv = require('opencv4nodejs');
+//const cv = require('opencv4nodejs');
 const npmRun = require('npm-run');
 
 const server = http.Server(app);
@@ -12,7 +12,7 @@ const io = require('socket.io')(server);
 const port = 3000;
 const hostname = '127.0.0.1';
 
-const wCap = new cv.VideoCapture(0);
+//const wCap = new cv.VideoCapture(0);
 
 app.use('/public', express.static('public'))
 app.get('/', function (req, res) {
