@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body onload="init();">
+    <img id="img"/>
+</body>
+<script src="./imagecapture.js"></script>
+<script>
+
+
+    let ImageCapture = window.ImageCapture;
+    
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(gotMedia)
+        .catch(error => console.error('getUserMedia() error:', error));
+
+    function gotMedia(mediaStream) {
+        const mediaStreamTrack = mediaStream.getVideoTracks()[0];
+        imageCapture = new ImageCapture(mediaStreamTrack);
+        console.log(imageCapture);
+    }
+
+    const img = document.getElementById('img');
+    
+    imageCapture.takePhoto()
+        .then(blob => {
+            img.src = URL.createObjectURL(blob);
+            img.onload = () => { URL.revokeObjectURL(this.src); }
+        })
+        .catch(error => console.error('takePhoto() error:', error));
+
+
+</script>
+
+</html>

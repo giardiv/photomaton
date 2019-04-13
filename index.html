@@ -1,15 +1,63 @@
-
 <html>
-<body>
-    <h2>YOOOP</h2>
+
+<head>
+
+
+    <script src="public/adapter-latest.js"></script>
+    <script src="public/chroma.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
-    <img id="image"/>
+    <style>
+        #photo{
+            border: 10px solid yellow;
+            filter:  url(#chromakey);
+        }
+        .defs-only {
+                position: absolute;
+                height: 0; 
+                width: 0;
+                overflow: none;
+                left: -100%;
+            }
+            body{
+                background: purple;
+            }
+    </style>
+</head>
+
+<body>
+
+        <svg class="defs-only">
+                <filter id="chromakey" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+                    <feColorMatrix type="matrix"
+                        values="1 0 0 0 0
+                                0 1 0 0 0
+                                0 0 1 0 0
+                                1 -3 0.4 0 1"/>
+                                <!-- 1.5 -2.5 1.5 0 1" /> 50 / 110 / 70 -->
+                </filter>
+            </svg>
+
+    <h2>YOOOP</h2>
+    <img id="image" />
+
+    <h1>Capturing every 300 milliseconds</h1>
+    <h2>grabFrame()</h2>
+    <!--p><canvas id="frame" width="640" height="480"></canvas></p-->
+    <h2>takePhoto() with post-processing ("Avatar" mix)</h2>
+    <p><img id="photo" src="blob:https://dandv.github.io/93a1e258-4417-47b8-a0c9-c150c26b9537"></p>
+    <h1 style="margin-top: -200px">ezrgrebd<br>
+    </h1>
+    <button id="stop">Stop frame grab</button>
+
+
+    <script src="public/bundle.js"></script>
     <script>
         const socket = io.connect('http://localhost:3000');
         socket.on('image', (data) => {
             const image = document.getElementById('image');
-            image.src = `data:image/jpeg;base64,${data}`;
+            image.src = data;//`data:image/jpeg;base64,${data}`;
         })
     </script>
 </body>
+
 </html>
