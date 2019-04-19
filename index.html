@@ -52,11 +52,17 @@
 
     <script src="public/bundle.js"></script>
     <script>
-        const socket = io.connect('http://localhost:3000');
+        const socket = io()//.connect('http://localhost:3000');
         socket.on('image', (data) => {
             const image = document.getElementById('image');
             image.src = data;//`data:image/jpeg;base64,${data}`;
         })
+        document.addEventListener('keypress', (event) => {
+            const nomTouche = event.key;
+
+            console.log('Évènement keypress\n\n' + 'touche : ' + nomTouche);
+            socket.emit('tap', 'J!')
+        });
     </script>
 </body>
 

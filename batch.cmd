@@ -1,0 +1,1 @@
+powershell -C Start-Process -FilePath "c:\docstoprint\doc1.pdf" -Verb Print

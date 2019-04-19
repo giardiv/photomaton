@@ -321,7 +321,7 @@
         captureDevice.takePhoto().then(processPhoto).catch(error => {
           err((new Date()).toISOString(), 'Error while taking photo:', error);
         });
-      }, 20);
+      }, 100);
     }
 
     function processFrame(imageBitmap) {

@@ -31,17 +31,31 @@ var opts = {
     verbose: true
 };
 
-var Webcam = NodeWebcam.create(opts);
+//var Webcam = NodeWebcam.create(opts);
 
 // NodeWebcam.capture("test_picture", opts, function (err, data) {
 //     var image = "<img src='" + data + "'>";
 // });
 
-npmRun.exec('Start-Process -FilePath "c:\docstoprint\doc1.pdf" -Verb Print', {cwd: __dirname }, function (err, stdout, stderr) {
-    // err Error or null if there was no error
-    // stdout Buffer|String
-    // stderr Buffer|String
-})
+console.log(1);
+
+// const
+//     { spawn } = require( 'child_process' ),
+//     dir = spawn( 'Start-Process -FilePath "c:\docstoprint\doc1.pdf" -Verb Print', [ '.' ] );
+
+// dir.stdout.on( 'data', data => console.log( `stdout: ${data}` ) );
+// dir.stderr.on( 'data', data => console.log( `stderr: ${data}` ) );
+// dir.on( 'close', code => console.log( `child process exited with code ${code}` ) );
+
+// npmRun.exec('powershell -C Start-Process -FilePath "c:\\docstoprint\\doc1.pdf" -Verb Print', {cwd: __dirname }, function (err, stdout, stderr) {
+//     console.log(err);
+//     console.log(stdout);
+//     console.log(stderr);
+//     // err Error or null if there was no error
+//     // stdout Buffer|String
+//     // stderr Buffer|String
+// })
+console.log(2);
 
 setInterval(() => {
     //const frame = wCap.read();
@@ -55,6 +69,10 @@ setInterval(() => {
    // });
 
 }, 1000)
+
+io.on('tap', (data) => {
+    console.log(data);
+})
 
 
 server.listen(port, hostname, () => {
